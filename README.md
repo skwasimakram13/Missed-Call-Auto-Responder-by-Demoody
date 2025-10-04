@@ -1,4 +1,4 @@
-# MissedCall Auto-Responder — by Demoody
+# Missed Call Auto-Responder — by Demoody
 
 **Project**: MissedCall Auto-Responder – Android app (Java) + PHP backend
 
