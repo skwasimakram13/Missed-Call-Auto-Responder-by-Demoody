@@ -1,6 +1,6 @@
-# MissedCall Auto-Responder
+# MissedCall Auto-Responder — by Demoody
 
-**Project**: MissedCall Auto-Responder - Android app (Java) + PHP backend
+**Project**: MissedCall Auto-Responder – Android app (Java) + PHP backend
 
 > Professional, product-ready app that automatically detects missed calls and (after a configurable delay) sends a single automated message to the caller using the Fast2SMS API. Designed for business users who receive many calls and want to follow up automatically without spamming.
 
