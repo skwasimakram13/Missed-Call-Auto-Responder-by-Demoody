@@ -13,8 +13,8 @@
 3. [User Stories & Use Cases](#user-stories--use-cases)
 4. [Architecture & Components](#architecture--components)
 5. [Technology Stack](#technology-stack)
-6. [Backend Structure](#backend)
-7. [Android App Structure](#app-structure)
+6. [Backend (PHP) Structure](#backend-php-structure)
+7. [Android App (Java) Structure](#android-app-java-structure)
 8. [Android App Specifications](#android-app-specifications)
    - Permissions
    - App Components
