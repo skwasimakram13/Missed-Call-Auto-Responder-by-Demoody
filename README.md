@@ -34,7 +34,13 @@
 16. [Release Checklist](#release-checklist)
 17. [Contribution Guidelines & Code Style](#contribution-guidelines--code-style)
 18. [FAQ](#faq)
-19. [Contact & Support](#contact--support)
+19. [Appendix: Example .env (server)](#appendix-example-env-server)
+20. [CHANGELOG.md](#-changelogmd)
+21. [LICENSE](#%EF%B8%8F-license)
+22. [.gitignore](#-gitignore)
+23. [Contribution Guide](#contribution-guide)
+24. [License & Contact](#license--contact)
+25. [Author](#author)
 
 ---
 
