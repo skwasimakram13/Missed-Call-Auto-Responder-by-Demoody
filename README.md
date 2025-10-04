@@ -1,6 +1,6 @@
 # MissedCall Auto-Responder
 
-**Project**: MissedCall Auto-Responder — Android app (Java) + PHP backend
+**Project**: MissedCall Auto-Responder - Android app (Java) + PHP backend
 
 > Professional, product-ready app that automatically detects missed calls and (after a configurable delay) sends a single automated message to the caller using the Fast2SMS API. Designed for business users who receive many calls and want to follow up automatically without spamming.
 
@@ -72,7 +72,7 @@ Goals:
 
 ## User Stories & Use Cases
 
-- **Business owner**: Won’t miss potential customers — they receive automated polite follow-ups.
+- **Business owner**: Won’t miss potential customers - they receive automated polite follow-ups.
 - **Support team**: Get a log of missed callers and automated replies, reducing manual callbacks.
 - **Customers**: Receive a courteous message asking if they need support.
 
@@ -202,10 +202,10 @@ CREATE UNIQUE INDEX idx_missed_unique ON missed_calls(phone_number, call_time);
 ### Background Reliability & Battery
 
 - Use **Foreground Service** to monitor call events persistently.
-- Use **WorkManager** (OneTimeWorkRequest with `setInitialDelay`) for delayed execution — it survives reboots (with `setRequiresDeviceIdle(false)` and `setBackoffCriteria`).
+- Use **WorkManager** (OneTimeWorkRequest with `setInitialDelay`) for delayed execution - it survives reboots (with `setRequiresDeviceIdle(false)` and `setBackoffCriteria`).
 - Prompt users to whitelist the app from battery optimizations and explain why.
 
-**Note:** Play Store policies and OEM restrictions vary — thorough testing required on Xiaomi/Realme/Oppo devices.
+**Note:** Play Store policies and OEM restrictions vary - thorough testing required on Xiaomi/Realme/Oppo devices.
 
 ---
 
@@ -245,7 +245,7 @@ CREATE TABLE missed_calls (
 - Store Fast2SMS API key in server environment variables (e.g., `.env`), not in code.
 
 
-### PHP Example (Fast2SMS) — cURL PHP skeleton
+### PHP Example (Fast2SMS) - cURL PHP skeleton
 
 ```php
 // Example: server-side Fast2SMS request (never from app)
@@ -272,7 +272,7 @@ curl_close($ch);
 
 ### Retry, Idempotency & Logging
 
-- Backend should be idempotent — use `device_id + call_time + phone_number` as dedupe key.
+- Backend should be idempotent - use `device_id + call_time + phone_number` as dedupe key.
 - Store provider response and message id for auditing.
 - Implement retry logic with exponential backoff for transient errors.
 
@@ -287,7 +287,7 @@ curl_close($ch);
 cURL example shown above.
 
 ### WhatsApp (optional)
-- Official WhatsApp Business Cloud API requires Facebook App & approval — heavier onboarding.
+- Official WhatsApp Business Cloud API requires Facebook App & approval - heavier onboarding.
 - Easier alternatives: Twilio API for WhatsApp, Ultramsg, WATI etc. They provide HTTP APIs to send templates or session messages.
 - WhatsApp messaging has template approval and opt-in requirements; more complex than SMS.
 
@@ -390,7 +390,7 @@ Recommendation: Start with **Fast2SMS (SMS)** MVP, then add WhatsApp as an enter
 ## FAQ
 
 **Q: Will the app spam callers if they call multiple times?**
-A: No — dedup logic groups calls by timestamp and only sends one message per missed call. You can optionally configure a cooldown window (e.g., 2 hours) to avoid multiple messages to the same number in a short window.
+A: No - dedup logic groups calls by timestamp and only sends one message per missed call. You can optionally configure a cooldown window (e.g., 2 hours) to avoid multiple messages to the same number in a short window.
 
 **Q: Can the app send WhatsApp messages?**
 A: Not natively. WhatsApp requires business API access (approval) or third-party provider. We recommend starting with SMS.
