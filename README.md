@@ -13,34 +13,36 @@
 3. [User Stories & Use Cases](#user-stories--use-cases)
 4. [Architecture & Components](#architecture--components)
 5. [Technology Stack](#technology-stack)
-6. [Android App Specifications](#android-app-specifications)
+6. [Backend Structure](#backend)
+7. [Android App Structure](#app-structure)
+8. [Android App Specifications](#android-app-specifications)
    - Permissions
    - App Components
    - Data model (local)
    - Deduplication logic
    - Background reliability
-7. [PHP Backend Specifications](#php-backend-specifications)
+9. [PHP Backend Specifications](#php-backend-specifications)
    - API endpoints
    - Database schema
    - Security considerations
-8. [Fast2SMS Integration (SMS) & WhatsApp Options](#fast2sms-integration-sms--whatsapp-options)
-9. [Message Templates and Localization](#message-templates-and-localization)
-10. [Privacy, Consent & Compliance](#privacy-consent--compliance)
-11. [Testing Strategy](#testing-strategy)
-12. [Deployment & CI/CD](#deployment--cicd)
-13. [Monitoring & Analytics](#monitoring--analytics)
-14. [Cost Estimate & Limits](#cost-estimate--limits)
-15. [Roadmap & Milestones](#roadmap--milestones)
-16. [Release Checklist](#release-checklist)
-17. [Contribution Guidelines & Code Style](#contribution-guidelines--code-style)
-18. [FAQ](#faq)
-19. [Appendix: Example .env (server)](#appendix-example-env-server)
-20. [CHANGELOG.md](#-changelogmd)
-21. [LICENSE](#%EF%B8%8F-license)
-22. [.gitignore](#-gitignore)
-23. [Contribution Guide](#contribution-guide)
-24. [License & Contact](#license--contact)
-25. [Author](#author)
+10. [Fast2SMS Integration (SMS) & WhatsApp Options](#fast2sms-integration-sms--whatsapp-options)
+11. [Message Templates and Localization](#message-templates-and-localization)
+12. [Privacy, Consent & Compliance](#privacy-consent--compliance)
+13. [Testing Strategy](#testing-strategy)
+14. [Deployment & CI/CD](#deployment--cicd)
+15. [Monitoring & Analytics](#monitoring--analytics)
+16. [Cost Estimate & Limits](#cost-estimate--limits)
+17. [Roadmap & Milestones](#roadmap--milestones)
+18. [Release Checklist](#release-checklist)
+19. [Contribution Guidelines & Code Style](#contribution-guidelines--code-style)
+20. [FAQ](#faq)
+21. [Appendix: Example .env (server)](#appendix-example-env-server)
+22. [CHANGELOG.md](#-changelogmd)
+23. [LICENSE](#%EF%B8%8F-license)
+24. [.gitignore](#-gitignore)
+25. [Contribution Guide](#contribution-guide)
+26. [License & Contact](#license--contact)
+27. [Author](#author)
 
 ---
 
@@ -125,6 +127,83 @@ Incoming Call --> PhoneStateListener --> Missed Call Detected --> Save to local 
 - **Backend**: PHP (7.4+ or 8.x), Composer, Lumen or Slim (optional microframework) or plain PHP + PDO
 - **Database**: MySQL / MariaDB (backend), SQLite (local on device)
 - **Deployment**: VPS / shared host supporting PHP & HTTPS (Certbot for SSL)
+
+---
+
+## Backend (PHP) Structure
+```
+/php-backend
+│
+├── public/                 # Publicly accessible folder (webroot)
+│   ├── index.php           # Entry point for API requests
+│   └── .htaccess           # Apache rewrite rules if needed
+│
+├── src/                    # PHP source code
+│   ├── Controllers/        # API controllers
+│   │   └── MissedCallController.php
+│   ├── Models/             # DB models
+│   │   └── MissedCall.php
+│   ├── Services/           # Business logic & external integrations (Fast2SMS)
+│   │   └── SMSService.php
+│   └── Helpers/            # Utility functions
+│
+├── config/                 # Configuration files
+│   └── config.php          # DB, API keys, env loading
+│
+├── logs/                   # Server logs
+├── vendor/                 # Composer dependencies
+├── .env                    # Environment variables
+├── composer.json
+└── README.md
+```
+
+### Key Backend Notes
+- All sensitive keys stored in `.env`.
+- Controller handles API endpoints and validation.
+- Service classes handle SMS sending and retries.
+- Model classes handle database operations with PDO.
+
+---
+
+## Android App (Java) Structure
+```
+/android-app
+│
+├── app/
+│   ├── src/main/
+│   │   ├── java/com/demoody/missedcall/
+│   │   │   ├── receivers/
+│   │   │   │   └── CallReceiver.java      # BroadcastReceiver for phone state
+│   │   │   ├── services/
+│   │   │   │   └── MissedCallService.java # Foreground Service
+│   │   │   ├── workers/
+│   │   │   │   └── MessageSchedulerWorker.java # WorkManager task for delayed SMS
+│   │   │   ├── db/
+│   │   │   │   ├── MissedCallDao.java      # Room DAO
+│   │   │   │   └── AppDatabase.java       # Room DB class
+│   │   │   ├── network/
+│   │   │   │   └── ApiClient.java         # Retrofit / OkHttp client
+│   │   │   └── utils/
+│   │   │       └── DedupeUtils.java       # Deduplication logic
+│   │   └── res/
+│   │       ├── layout/
+│   │       │   └── activity_main.xml
+│   │       ├── values/
+│   │       │   └── strings.xml
+│   │       └── drawable/
+│   └── AndroidManifest.xml
+│
+├── build.gradle
+└── proguard-rules.pro
+```
+
+### Key Android Notes
+- `CallReceiver` listens for phone state changes.
+- `MissedCallService` ensures the app runs reliably in the background.
+- `MessageSchedulerWorker` handles delayed execution (5 min) and deduplication.
+- Room DB (`missed_calls`) keeps local logs and prevents duplicate messages.
+- Retrofit/OkHttp handles secure calls to the backend.
+- Foreground service ensures battery-optimized monitoring.
 
 ---
 
