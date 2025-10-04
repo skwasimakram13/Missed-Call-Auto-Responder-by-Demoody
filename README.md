@@ -394,11 +394,6 @@ A: Play Store restricts some sensitive permissions; you must provide justificati
 
 ---
 
-## Contact & Support
-
-For questions, issues, or to request the next step (Android skeleton / PHP backend), contact the project maintainer: `owner@example.com` (replace with your business contact).
-
----
 
 ## Appendix: Example `.env` (server)
 
@@ -416,7 +411,123 @@ JWT_SECRET=some_long_random_secret
 
 ---
 
-**End of README**
+## 📜 CHANGELOG.md
 
-> If you want, I can now generate a downloadable `README.md` file and also produce a `CHANGELOG.md`, `LICENSE` and a starter `.gitignore`. Tell me whether you want the README exported as a downloadable file and which part you'd like me to begin coding first: **Android app** or **PHP backend**.
+### v0.1.0 — Initial Planning & Documentation (2025-10-05)
+- Created initial `README.md` with full architecture and roadmap.
+- Defined Android app and PHP backend specifications.
+- Added permissions list and background handling strategy.
+- Planned Fast2SMS integration (server-side).
+- Added future roadmap for WhatsApp support.
 
+### v0.2.0 — Upcoming
+- Add Android skeleton project (Receiver, Service, WorkManager, Room DB).
+- Add PHP backend skeleton (REST API, DB schema, Fast2SMS connector).
+- Include configuration templates and initial deployment guide.
+
+---
+
+
+## ⚖️ LICENSE
+
+MIT License
+
+```
+Copyright (c) 2025 Demoody Technologies
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+## 🧹 .gitignore
+
+```
+# Android Studio / IntelliJ
+.idea/
+.gradle/
+/local.properties
+.DS_Store
+/build/
+/captures/
+*.iml
+
+# APK / Build Outputs
+*.apk
+*.aab
+app/release/
+
+# Logs
+*.log
+
+# Node / PHP Vendor
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+
+# Environment files
+.env
+.env.*
+
+# Backup & temp
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# OS generated
+Thumbs.db
+.DS_Store
+```
+
+---
+
+# Contribution Guide
+- Fork repository
+- Create branch: `feature/xxx` or `bugfix/yyy`
+- Follow code style (Java: Android style guide)
+- Create PR with description and linked issue
+- CI must pass before merge
+
+---
+
+# License & Contact
+- MIT License — you may use and modify the code for your organization. Include attribution if you redistribute.
+- For commercial / closed-source product consider proprietary license.
+
+**Contact**: Project owner / maintainer - wasim@demoody.com
+
+---
+## Author
+**Develope By** - [Sk Wasim Akram](https://github.com/skwasimakram13)
+
+- 👨‍💻 All of my projects are available at [https://skwasimakram.com](https://skwasimakram.com)
+
+- 📝 I regularly write articles on [https://blog.skwasimakram.com](https://blog.skwasimakram.com)
+
+- 📫 How to reach me **hello@skwasimakram.com**
+
+- 🧑‍💻 Google Developer Profile [https://g.dev/skwasimakram](https://g.dev/skwasimakram)
+
+- 📲 LinkedIn [https://www.linkedin.com/in/sk-wasim-akram](https://www.linkedin.com/in/sk-wasim-akram)
+
+---
+
+💡 *Built with ❤️ and creativity by Wassu.*
