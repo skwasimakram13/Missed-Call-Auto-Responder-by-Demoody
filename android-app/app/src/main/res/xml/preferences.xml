@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/message_settings">
+
+        <EditTextPreference
+            android:key="message_template"
+            android:title="@string/message_template_title"
+            android:summary="@string/message_template_summary"
+            android:defaultValue="@string/default_message_template"
+            android:inputType="textMultiLine" />
+
+        <SeekBarPreference
+            android:key="delay_minutes"
+            android:title="@string/delay_minutes_title"
+            android:summary="@string/delay_minutes_summary"
+            android:defaultValue="5"
+            android:max="60"
+            app:min="1"
+            app:showSeekBarValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/business_hours">
+
+        <SwitchPreferenceCompat
+            android:key="business_hours_enabled"
+            android:title="@string/enable_business_hours"
+            android:summary="@string/business_hours_summary"
+            android:defaultValue="false" />
+
+        <Preference
+            android:key="business_start_time"
+            android:title="@string/business_start_time"
+            android:dependency="business_hours_enabled" />
+
+        <Preference
+            android:key="business_end_time"
+            android:title="@string/business_end_time"
+            android:dependency="business_hours_enabled" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/api_settings">
+
+        <EditTextPreference
+            android:key="api_base_url"
+            android:title="@string/api_base_url"
+            android:summary="@string/api_base_url_summary"
+            android:inputType="textUri" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Missed Call Auto-Responder</string>
+    
+    <!-- Main Activity -->
+    <string name="auto_responder">Auto Responder</string>
+    <string name="status">Status</string>
+    <string name="statistics">Statistics</string>
+    <string name="total_calls">Total Calls</string>
+    <string name="sent_messages">Sent Messages</string>
+    <string name="failed_messages">Failed Messages</string>
+    <string name="message_template">Message Template</string>
+    <string name="delay">Delay</string>
+    <string name="settings">Settings</string>
+    <string name="battery_optimization">Battery Optimization</string>
+    <string name="test_message">Test Message</string>
+    
+    <!-- Service -->
+    <string name="service_notification_title">Missed Call Monitor</string>
+    <string name="service_notification_text">Monitoring for missed calls</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="message_settings">Message Settings</string>
+    <string name="message_template_title">Message Template</string>
+    <string name="message_template_summary">Customize the automatic response message</string>
+    <string name="delay_minutes_title">Delay (Minutes)</string>
+    <string name="delay_minutes_summary">Wait time before sending message</string>
+    
+    <string name="business_hours">Business Hours</string>
+    <string name="enable_business_hours">Enable Business Hours</string>
+    <string name="business_hours_summary">Only send messages during business hours</string>
+    <string name="business_start_time">Start Time</string>
+    <string name="business_end_time">End Time</string>
+    
+    <string name="api_settings">API Settings</string>
+    <string name="api_base_url">API Base URL</string>
+    <string name="api_base_url_summary">Server endpoint for message processing</string>
+    
+    <string name="about">About</string>
+    <string name="app_info">App Information</string>
+    <string name="version">Version</string>
+    <string name="developer">Developer</string>
+    <string name="developer_name">Demoody Technologies</string>
+    
+    <!-- Menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_logs">Logs</string>
+    <string name="action_about">About</string>
+    
+    <!-- Default message template -->
+    <string name="default_message_template">Hello! We missed your call. We\'re sorry we couldn\'t pick up. Reply CALLBACK or visit our website and we\'ll get back to you shortly. Reply STOP to opt out.</string>
+    
+    <!-- Status messages -->
+    <string name="status_active">Active - Monitoring missed calls</string>
+    <string name="status_inactive">Inactive</string>
+    <string name="status_permissions_required">Permissions required</string>
+    
+    <!-- Permissions -->
+    <string name="permission_phone_state">Phone State</string>
+    <string name="permission_call_log">Call Log</string>
+    <string name="permission_notifications">Notifications</string>
+    
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
+</resources>

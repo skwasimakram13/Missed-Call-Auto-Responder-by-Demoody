@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: missed_call_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_password}
+      MYSQL_DATABASE: ${DB_NAME:-missed_call}
+      MYSQL_USER: ${DB_USER:-missed_user}
+      MYSQL_PASSWORD: ${DB_PASS:-user_password}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../php-backend/config/database.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "3306:3306"
+    networks:
+      - missed_call_network
+
+  # PHP Backend
+  php_backend:
+    build:
+      context: ../php-backend
+      dockerfile: ../deployment/Dockerfile.php
+    container_name: missed_call_backend
+    restart: unless-stopped
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME:-missed_call}
+      - DB_USER=${DB_USER:-missed_user}
+      - DB_PASS=${DB_PASS:-user_password}
+      - FAST2SMS_API_KEY=${FAST2SMS_API_KEY:-}
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret_here}
+      - RATE_LIMIT_PER_DEVICE=${RATE_LIMIT_PER_DEVICE:-100}
+      - RATE_LIMIT_PER_PHONE=${RATE_LIMIT_PER_PHONE:-5}
+    volumes:
+      - ../php-backend:/var/www/html
+      - php_logs:/var/www/html/logs
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - mysql
+    networks:
+      - missed_call_network
+
+  # Nginx (Optional - for production)
+  nginx:
+    image: nginx:alpine
+    container_name: missed_call_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../php-backend/public:/var/www/html/public:ro
+    depends_on:
+      - php_backend
+    networks:
+      - missed_call_network
+
+  # Cron service for scheduled messages
+  cron:
+    build:
+      context: ../php-backend
+      dockerfile: ../deployment/Dockerfile.cron
+    container_name: missed_call_cron
+    restart: unless-stopped
+    environment:
+      - APP_ENV=production
+      - DB_HOST=mysql
+      - DB_NAME=${DB_NAME:-missed_call}
+      - DB_USER=${DB_USER:-missed_user}
+      - DB_PASS=${DB_PASS:-user_password}
+      - FAST2SMS_API_KEY=${FAST2SMS_API_KEY}
+    volumes:
+      - ../php-backend:/var/www/html
+    depends_on:
+      - mysql
+      - php_backend
+    networks:
+      - missed_call_network
+
+volumes:
+  mysql_data:
+  php_logs:
+
+networks:
+  missed_call_network:
+    driver: bridge

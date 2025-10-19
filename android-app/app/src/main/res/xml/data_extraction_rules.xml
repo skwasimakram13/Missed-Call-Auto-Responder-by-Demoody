@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude sensitive data from cloud backup -->
+        <exclude domain="sharedpref" path="missed_call_prefs.xml" />
+        <exclude domain="database" path="missed_call_db" />
+    </cloud-backup>
+    <device-transfer>
+        <!-- Allow device transfer but exclude sensitive data -->
+        <exclude domain="sharedpref" path="missed_call_prefs.xml" />
+        <exclude domain="database" path="missed_call_db" />
+    </device-transfer>
+</data-extraction-rules>
